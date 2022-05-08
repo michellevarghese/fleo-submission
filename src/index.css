@@ -155,7 +155,7 @@ Pagination
   background: rgba(227, 229, 230, 0.938);
   border-radius: var(--radius);
   box-shadow: var(--light-shadow);
-  padding: 2rem 3.5rem;
+  padding: 2rem 3rem;
   position: relative;
   text-align: left;
 

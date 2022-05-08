@@ -12,6 +12,7 @@ function App() {
   const [language, setSearchLanguage] = useState('Javascript');
   const [qdata, setQdata] = useState([]);
   const [flag, setFlag] = useState(1);
+  const [order, setOrder] = useState('');
 
   console.log("i ammm getting called");
   useEffect(() => {
@@ -81,7 +82,23 @@ function App() {
   const handleSort = async (e) => {
     e.preventDefault()
     console.log(language)
-    const url = `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=desc`;
+    var ord='';
+    if(order==''){
+      ord="desc";
+      setOrder(ord)
+    }
+    else if(order=='asc'){
+     ord="desc";
+      setOrder(ord)
+    }
+    else if(order=='desc'){
+     ord="asc";
+      setOrder(ord)
+
+    }
+
+    const url = `https://api.github.com/search/repositories?q=language:${language}&sort=stars&order=${ord}`;
+    
     const response = await fetch(url);
     const da = await response.json();
     const it = da.items
@@ -104,7 +121,7 @@ function App() {
    
       <div className="contain">
         <form class="search-bar" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Enter Language" name="q" onChange={handleSearch} />
+          <input type="text" placeholder="Enter Language eg. Python" name="q" onChange={handleSearch} />
           <button type="submit" onClick={handleSubmit}><img src="images/search.png" /></button>
         </form>
 
